@@ -1,5 +1,6 @@
 #include "Invoker.h"
 #include "PortCommand.h"
+#include "CommandFactory.h"
 #include <iostream>
 #include <unordered_map>
 
@@ -10,9 +11,8 @@ int main()
     string cmd;
     cin>>cmd;
     Invoker *invoker = Invoker::get_invoker();
-    FTPCommand *port_cmd = new PortCommand();
-    invoker->set_command(port_cmd);
+    FTPCommand *list_cmd = CommandFactory::get_command(cmd);
+    invoker->set_command(list_cmd);
     invoker->action();
-
-
+    return 0;
 }
